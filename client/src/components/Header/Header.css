@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Elsie:100,400,500,900');
+.Header nav {
+    background-color: #EE6C4D;
+    position: relative;
+    width: 100%;
+}
+.Header nav .col {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3%;
+}
+.Header nav .brand-logo {
+    position: initial;
+    font-size: 3.5em;
+    font-family: "Elsie", 'Times New Roman', Times, serif;
+}
+
+.Header .headerNav {
+}

@@ -1,0 +1,132 @@
+.Login {
+    padding: 10% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Login .form-module {
+    position: relative;
+    background: #ffffff;
+    width: 30%;
+    min-width: 500px;
+    padding: 2% 5% 4%;
+    border-top: 5px solid #17A398;
+    margin: 0 auto;
+}
+
+.Login .form-module .form {
+    display: none;
+    padding: 40px;
+}
+
+.Login .form-module .form:nth-child(2) {
+    display: block;
+}
+
+.Login .form-module h2 {
+    color: #17A398;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
+    margin: 5% 0;
+    text-align: center;
+}
+
+.Login .form-module input {
+    outline: none;
+    display: block;
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    margin: 0 0 5%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    font-weight: 400;
+    transition: 0.3s ease;
+}
+
+.Login .form-module input:focus {
+    border: 1px solid #17A398;
+    color: #333333;
+}
+
+.Login button {
+    width: 100%;
+    letter-spacing: 0;
+    text-transform: initial;
+}
+
+.Login .form-module .toggle {
+    cursor: pointer;
+    position: absolute;
+    top: -0;
+    right: -0;
+    background: #17A398;
+    width: 30px;
+    height: 30px;
+    margin: -5px 0 0;
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 30px;
+    transition: 0.3s ease;
+    text-align: center;
+}
+
+.Login .form-module .toggle:hover {
+    background: rgb(18, 129, 120);
+}
+
+.Login .form-module .toggle .tooltip {
+    position: absolute;
+    top: 0;
+    left: 35px;
+    right: -100px;
+    display: block;
+    background: rgba(0, 0, 0, 0.6);
+    width: auto;
+    padding: 30%;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.Login .form-module .toggle .tooltip:before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: -5px;
+    display: block;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid rgba(0, 0, 0, 0.6);
+}
+
+.Login .buttonSection {
+    font-family: "Varela Round", Calibri, 'Trebuchet MS', sans-serif;
+    margin: 2%;
+    text-align: center;
+}
+
+.Login .buttonSection button{
+    display: block;
+    margin: 5% 0;
+}
+
+.Login .buttonSection a i {
+    margin: 0 5% 0 0;
+}
+
+.Login .buttonSection .googleBtn {
+    background-color: #db3236;
+}
+
+.Login .buttonSection .facebookBtn {
+    background-color: #3B5998;
+}
+
+.Login .buttonSection .googleBtn:hover {
+    background-color: #9b262a;
+}
+
+.Login .buttonSection .facebookBtn:hover {
+    background-color: rgb(49, 75, 124);
+}
