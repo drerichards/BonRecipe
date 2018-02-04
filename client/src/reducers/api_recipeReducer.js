@@ -1,12 +1,11 @@
-import { FETCH_API_RECIPES, SEARCH_RECIPE } from '../actions/types'
+import { FETCH_API_RECIPES, FETCH_SEARCH_RECIPE } from '../actions/types'
 
 export default function (state = [], action) {
     switch (action.type) {
         case FETCH_API_RECIPES:
-        // console.log(action.payload)
-            return [...state, action.payload]
-        case SEARCH_RECIPE:
-            return action.payload
+            return [action.payload]
+        case FETCH_SEARCH_RECIPE:
+            return [action.payload]
         default:
             return state
     }

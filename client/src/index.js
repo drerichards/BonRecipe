@@ -11,7 +11,8 @@ import './index.css'
 import registerServiceWorker from './registerServiceWorker'
 
 const enhancer = composeWithDevTools(applyMiddleware(thunk))
-const store = createStore(reducers, enhancer)
+const persistedState = loadState() //persisted in localstorage
+const store = createStore(reducers, persistedState, enhancer)
 store.subscribe(() => saveState(store.getState())) //called any time an action is dispatched, and some part of the state tree changes
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'))
 registerServiceWorker()

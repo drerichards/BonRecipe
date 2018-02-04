@@ -8,8 +8,7 @@ class ErrorBoundary extends Component {
 
     componentDidCatch(error, info) {
         // Display fallback UI
-        this.setState({ hasError: true })
-        // You can also log the error to an error reporting service
+        this.setState(() => { return { hasError: true } })
         console.log(error, info)
     }
 

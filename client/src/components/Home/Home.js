@@ -22,8 +22,8 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return { api_recipes: state.api_recipes[0] }
+const mapStateToProps = ({ api_recipes }) => {
+    return { api_recipes: api_recipes[0] }
 }
 
 const mapDispatchToProps = dispatch => {

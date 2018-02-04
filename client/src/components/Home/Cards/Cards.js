@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
+import { Card, CardTitle } from 'react-materialize'
+import noImage from './image/noImage.jpg'
+
 // import { addSysRecipe } from '../../actions/index'
 import './Cards.css'
 
@@ -15,20 +18,21 @@ class Cards extends Component {
     }
 
     clickAddItem(data) {
-        const time = this.secondsToHms(data.totalTimeInSeconds)
-        const body = [
-            data.id,
-            data.recipeName,
-            data.ingredients,
-            data.imageUrlsBySize["90"],
-            time
-        ]
+        // const time = this.secondsToHms(data.totalTimeInSeconds)
+        //may be no image
+        // const body = [
+        //     data.id,
+        //     data.recipeName,
+        //     data.ingredients,
+        //     data.imageUrlsBySize["90"],
+        //     time
+        // ]
         // this.props.dispatch(addSysRecipe(this.props.auth.id, this.props.auth.service, body))
     }
 
     render() {
-        console.log(this.props.recipeData)
         const recipeData = this.props.recipeData
+        // console.log(recipeData)
         let recipeList = ''
         if (!recipeData) {
             recipeList = <p>Could not retrieve Recipe data</p>
@@ -40,15 +44,17 @@ class Cards extends Component {
                 const ingredList = ingredients.map((item, i) => {
                     return <li key={i} className="ingredients">{item}</li>
                 })
+                let image
+                !recipe.imageUrlsBySize ? image = noImage : image = recipe.imageUrlsBySize[90]
                 return (
-                    <div key={recipe.id} className="recipeItems">
-                        <img src={recipe.imageUrlsBySize[90]} alt={recipe.recipeName} />
+                    <Card header={<CardTitle reveal image={image}
+                        className='tooltip' waves='light'><span className="tooltiptext">Click for Ingredients</span></CardTitle>}
+                        key={recipe.id} className="recipeItems"
+                        title={recipe.recipeName}
+                        reveal={<span>Ingredients: <ul>{ingredList}</ul></span>}>
                         <i className="fa fa-plus-circle fa-2x" aria-hidden="true"
                             onClick={e => this.clickAddItem(recipe)}></i>
-                        <div className="tooltip"><p>{recipe.recipeName}</p>
-                            <span className="tooltiptext">Ingredients: <ul>{ingredList}</ul></span>
-                        </div>
-                    </div>
+                    </Card>
                 )
             })
         }

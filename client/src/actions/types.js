@@ -1,4 +1,5 @@
+export const FETCH_API_RECIPES = 'fetch_api_recipes'
+export const FETCH_SEARCH_RECIPE = 'fetch_search_recipe'
 export const CREATE_USER = 'create_user'
 export const LOGIN_USER = 'login_user'
-export const FETCH_API_RECIPES = 'fetch_api_recipes'
-export const SEARCH_RECIPE = 'search_recipe'
+export const LOGOUT_USER = 'logout_user'

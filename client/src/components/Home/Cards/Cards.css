@@ -1,16 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Arima+Madurai:100,200,300,400');
 .Cards .recipeItems {
     margin: 1% 5%;
     text-align: center;
-    padding: 1%;
     width: 325px;
     box-shadow: 0px 4px 5px #ccc;
     transition: all .2s ease-in-out;
     background-color: rgba(255, 169, 135, 0.4);
     border-radius: 10%;
     border: 4px double #fff;
-    font-family: "Elsie";
-    font-size: 1.3em;
-    letter-spacing: 1px;
+    font-size: 1em;
 }
 
 .Cards section {
@@ -25,11 +23,12 @@
     padding-top: 2%;
 }
 
-.Cards img {
-    width: 120px;
+.Cards>section>div>div.tooltip>img {
+    width: 45%;
     box-shadow: 0px 1px 10px #999;
     margin: 10% auto 0;
     display: block;
+    cursor: pointer;
 }
 
 .Cards .recipeItems:nth-child(3n-1) {
@@ -46,7 +45,10 @@
 
 .Cards .ingredients {
     text-transform: capitalize;
+    font-family: "Varela Round", sans-serif;
     list-style: inside;
+    text-align: initial;
+    margin: 0 10%;
 }
 
 .Cards i {
@@ -61,7 +63,10 @@
     transform: scale(1.2);
 }
 
-.Cards .tooltip {
+.Cards .card .card-content .card-title {
+    font-size: 1.2em;
+    font-family: "Arima Madurai";
+    font-weight: 500;
     position: relative;
     border-bottom: 2px solid #fff;
     border-top: 2px solid #fff;
@@ -89,6 +94,46 @@
     transition: opacity 0.4s;
 }
 
+.Cards .card .card-reveal .card-title {
+    font-family: "Arima Madurai";
+    font-size: 1.3em;
+    margin: 10% 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.219);
+}
+
+.Cards .card .card-reveal .card-title .right {
+    text-shadow: 0 0 0 #fff;
+    position: absolute;
+    top: 0;
+    right: 5%;
+    color: #000;
+}
+
+.Cards .card .card-content .card-title .right {
+    display: none;
+}
+
+.Cards .tooltip {
+    position: relative;
+}
+
+.Cards .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 65%;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 99;
+    bottom: 110%;
+    left: 50%;
+    opacity: 0;
+    font-family: "Varela Round", Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 0.5em;
+    font-weight: 100;
+    transition: opacity 0.4s;
+}
+
 .Cards .tooltip .tooltiptext::after {
     content: "";
     position: absolute;
@@ -100,7 +145,7 @@
     border-color: #555 transparent transparent transparent;
 }
 
-.tooltip:hover .tooltiptext {
+.Cards .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
     line-height: 1;

@@ -17,3 +17,20 @@
 
 .Header .headerNav {
 }
+
+.Header button {
+    letter-spacing: 0;
+    text-transform: initial;
+}
+
+.Header button i {
+    line-height: inherit;
+}
+
+.Header nav .nav-wrapper ul a{
+    display: inline-block;
+}
+
+.Header nav ul a a:hover{
+    background-color: transparent;
+}

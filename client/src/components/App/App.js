@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Router, Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import createHistory from 'history/createBrowserHistory'
 import ErrorBoundary from '../ErrorBoundary'
 import Home from '../Home/Home'
 import Header from '../Header/Header'
@@ -7,10 +9,11 @@ import Login from '../Login/Login'
 import Account from '../Account/Account'
 import './App.css'
 
+export const history = createHistory()
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router history={history}> 
         {/* root */}
         <ErrorBoundary>
           <div className="App">
@@ -20,10 +23,19 @@ class App extends Component {
               <Header />
             </ErrorBoundary>
 
+
             {/* home */}
             <ErrorBoundary>
               <Route exact path='/' component={Home} />
             </ErrorBoundary>
+
+            <Route exact path="/" render={() => (
+              this.props.auth.loggedIn === true ? (
+                <Redirect to="/" />
+              ) : (
+                  <Redirect to="/login" />
+                )
+            )} />
 
             {/* userInfo */}
             <ErrorBoundary>
@@ -34,6 +46,14 @@ class App extends Component {
             <ErrorBoundary>
               <Route path='/account' component={Account} />
             </ErrorBoundary>
+
+            <Route exact path="/account" render={() => (
+              this.props.auth.loggedIn === true ? (
+                <Redirect to="/account" />
+              ) : (
+                  <Redirect to="/login" />
+                )
+            )} />
 
             {/* login */}
             <ErrorBoundary>
@@ -46,4 +66,5 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = ({ auth }) => { return { auth } }
+  export default connect(mapStateToProps)(App)
