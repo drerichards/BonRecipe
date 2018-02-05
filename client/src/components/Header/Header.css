@@ -1,36 +1,78 @@
 @import url('https://fonts.googleapis.com/css?family=Elsie:100,400,500,900');
+.Header {
+    background-color: #EE6C4D;
+    position: relative;
+    color: #fff;
+}
+
+.Header .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 2%;
+}
+
+.Header .nav>div {
+    display: flex;
+    justify-content: space-around;
+    /* width: 35%; */
+    align-items: center;
+}
+
+.Header .nav>div a {
+    margin: 0 3%;
+}
+
+.Header h1 {
+    display: inline-block;
+    position: initial;
+    font-size: 3.5em;
+    margin: 0;
+    font-family: "Elsie", 'Times New Roman', Times, serif;
+}
+
 .Header nav {
     background-color: #EE6C4D;
     position: relative;
-    width: 100%;
+    display: inline;
 }
+
 .Header nav .col {
     display: flex;
     justify-content: space-between;
     padding: 0 3%;
 }
+
 .Header nav .brand-logo {
     position: initial;
     font-size: 3.5em;
     font-family: "Elsie", 'Times New Roman', Times, serif;
 }
 
-.Header .headerNav {
-}
+.Header .headerNav {}
 
 .Header button {
     letter-spacing: 0;
     text-transform: initial;
 }
 
+.Header .logoutBtn{
+    background-color: rgb(41, 149, 192);
+}
+
 .Header button i {
     line-height: inherit;
 }
 
-.Header nav .nav-wrapper ul a{
+.Header nav .nav-wrapper ul a {
     display: inline-block;
 }
 
-.Header nav ul a a:hover{
+.Header nav ul a:hover {
     background-color: transparent;
+}
+
+.Header h6 {
+    display: inline-block;
+    font-size: 0.9em;
 }

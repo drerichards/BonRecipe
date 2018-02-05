@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import { Card, CardTitle } from 'react-materialize'
-import noImage from './image/noImage.jpg'
-
-// import { addSysRecipe } from '../../actions/index'
+import { addSysRecipe } from '../../../actions/index'
 import './Cards.css'
 
 class Cards extends Component {
@@ -18,21 +16,22 @@ class Cards extends Component {
     }
 
     clickAddItem(data) {
-        // const time = this.secondsToHms(data.totalTimeInSeconds)
-        //may be no image
-        // const body = [
-        //     data.id,
-        //     data.recipeName,
-        //     data.ingredients,
-        //     data.imageUrlsBySize["90"],
-        //     time
-        // ]
-        // this.props.dispatch(addSysRecipe(this.props.auth.id, this.props.auth.service, body))
+        const time = this.secondsToHms(data.totalTimeInSeconds)
+        let image
+        data.imageUrlsBySize["90"] ? image = data.imageUrlsBySize["90"]
+            : image = 'https://res.cloudinary.com/andrerichards/image/upload/v1517793260/noImage_erqriy.jpg'
+        const body = [
+            data.id,
+            data.recipeName,
+            data.ingredients,
+            image,
+            time
+        ]
+        this.props.addRecipe(this.props.auth.username, body)
     }
 
     render() {
         const recipeData = this.props.recipeData
-        // console.log(recipeData)
         let recipeList = ''
         if (!recipeData) {
             recipeList = <p>Could not retrieve Recipe data</p>
@@ -45,7 +44,8 @@ class Cards extends Component {
                     return <li key={i} className="ingredients">{item}</li>
                 })
                 let image
-                !recipe.imageUrlsBySize ? image = noImage : image = recipe.imageUrlsBySize[90]
+                !recipe.imageUrlsBySize ? image = 'https://res.cloudinary.com/andrerichards/image/upload/v1517793260/noImage_erqriy.jpg'
+                    : image = recipe.imageUrlsBySize[90]
                 return (
                     <Card header={<CardTitle reveal image={image}
                         className='tooltip' waves='light'><span className="tooltiptext">Click for Ingredients</span></CardTitle>}
@@ -69,6 +69,8 @@ class Cards extends Component {
     }
 }
 
-export default Cards
-// function mapStateToProps({ auth, accountRecipes }) { return { auth, accountRecipes } }
-// export default connect(mapStateToProps)(Cards)
+const mapStateToProps = ({ auth, accountRecipes }) => { return { auth, accountRecipes } }
+const mapDispatchToProps = dispatch => {
+    return { addRecipe: (username, recipe) => addSysRecipe(dispatch, username, recipe) }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Cards)

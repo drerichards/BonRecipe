@@ -1,0 +1,102 @@
+.Account {
+    position: relative;
+    width: 80vw;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.Account h4 {
+    font-family: "Elsie", 'Times New Roman', serif;
+    text-align: center;
+}
+
+.Account .collapse-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.Account .sysCollapse,
+.Account .userCollapse {
+    flex-basis: 40%
+}
+
+.Account .collapsible-header {
+    margin: 0.3% 0;
+    font-family: "Arima Madurai";
+    font-weight: 600;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    transition: all 0.35s;    
+}
+
+.Account .collapsible-header:hover {
+    background-color: rgba(196, 232, 18, 0.424);
+}
+
+.Account .sysCollapse .collapsible-header {
+    background-color: rgba(53, 167, 177, 0.3);
+}
+
+.Account .userCollapse .collapsible-header {
+        background-color: rgba(195, 49, 73, 0.2);
+}
+
+.Account .collapsible-body {
+    padding: 0.5em 2em;
+}
+
+.Account .tab-content {
+    display: flex;
+}
+
+.Account .imageSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.Account .imageSection {
+    flex-basis: 30%;
+}
+
+.Account .imageSection img {
+    display: block;
+    width: 65%;
+    margin-bottom: 1%;
+}
+
+.Account .imageSection span {
+    font-size: 0.8em;
+}
+
+.Account .ingredSection {
+    flex-basis: 70%;
+    overflow: auto;
+}
+
+.Account .ingredSection aside {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 125px;
+}
+
+.Account .ingredSection aside .ingredients {
+    flex: 1 0 40%;
+    margin: 1%;
+    text-transform: capitalize;
+}
+
+.Account .ingredSection h5 {
+    margin: 0;
+}
+
+.Account .sys_recipes i {
+    font-size: 1.8em;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin: 6em 0em 0em 2em;
+}
+
+.Account .sys_recipes i:hover {
+    color: red;
+    transform: scale(1.2);
+}

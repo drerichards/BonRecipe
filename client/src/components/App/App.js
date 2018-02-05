@@ -29,7 +29,7 @@ class App extends Component {
               <Route exact path='/' component={Home} />
             </ErrorBoundary>
 
-            <Route exact path="/" render={() => (
+            <Route path="/" render={() => (
               this.props.auth.loggedIn === true ? (
                 <Redirect to="/" />
               ) : (
@@ -38,16 +38,16 @@ class App extends Component {
             )} />
 
             {/* userInfo */}
-            <ErrorBoundary>
-              <Route path='/:userId/:userEmail/:userName/:userService' component={Home} />
-            </ErrorBoundary>
+            {/* <ErrorBoundary> */}
+              {/* <Route path='/:userId/:userEmail/:userName/:userService' component={Home} /> */}
+            {/* </ErrorBoundary> */}
 
             {/* account */}
             <ErrorBoundary>
               <Route path='/account' component={Account} />
             </ErrorBoundary>
 
-            <Route exact path="/account" render={() => (
+            <Route path="/account" render={() => (
               this.props.auth.loggedIn === true ? (
                 <Redirect to="/account" />
               ) : (

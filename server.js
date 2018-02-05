@@ -12,12 +12,13 @@ const { router: usersRouter } = require('./users')
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth')
 
 app.use(cors({ origin: CLIENT_ORIGIN})) //enable all CORS requests from either the client or localhost 3000
+console.log(CLIENT_ORIGIN)
 app.use(morgan('dev')) //output colored by response status for development use
 app.use(bodyParser.json())
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*') //allow any origin to request the resource
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept') //indicattes which headers can be used in the actual request
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE') //tells which HTTP methods are enabled for CORS requests
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS') //tells which HTTP methods are enabled for CORS requests
     next() //move on to next middleware in stack if present
 })
 
@@ -45,6 +46,8 @@ app.get('/api/protected', jwtAuth, (req, res) => {
 })
 
 require('./routes/apiRecipeRoutes')(app)
+require('./routes/crudRoutes')(app)
+
 app.use('*', (req, res) => {
     return res.status(404).json({ message: 'Not Found' }) //catchall for bad route requests
 })

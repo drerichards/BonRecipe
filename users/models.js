@@ -13,6 +13,15 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    service: {
+        type: String
+    },
+    sys_recipes: {
+        type: Array
+    },
+    user_recipes: {
+        type: Array
     }
 })
 

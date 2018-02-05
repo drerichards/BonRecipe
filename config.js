@@ -10,3 +10,4 @@ exports.GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET
 exports.FB_APP_ID = process.env.FB_APP_ID
 exports.FB_APP_SECRET = process.env.FB_APP_SECRET
 exports.COOKIE_KEY = process.env.COOKIE_KEY
+exports.CLIENT_ORIGIN = process.env.CLIENT_ORIGIN
