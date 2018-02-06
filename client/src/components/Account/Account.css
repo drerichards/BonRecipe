@@ -3,7 +3,7 @@
     width: 80vw;
     margin: 0 auto;
     text-align: left;
-    text-transform: capitalize;    
+    text-transform: capitalize;
 }
 
 .Account h4 {
@@ -27,7 +27,7 @@
     font-weight: 600;
     font-size: 1.1em;
     letter-spacing: 1px;
-    transition: all 0.35s;    
+    transition: all 0.35s;
 }
 
 .Account .sysCollapse .collapsible-header:hover,
@@ -40,7 +40,7 @@
 }
 
 .Account .userCollapse .collapsible-header {
-        background-color: rgba(195, 49, 73, 0.2);
+    background-color: rgba(195, 49, 73, 0.2);
 }
 
 .Account .collapsible-body {
@@ -75,6 +75,12 @@
     overflow: auto;
 }
 
+.Account .userCollapse .ingredSection {
+    flex-basis: 90%;
+    overflow: auto;
+}
+
+
 .Account .ingredSection aside {
     display: flex;
     flex-wrap: wrap;
@@ -87,7 +93,8 @@
 }
 
 .Account .ingredSection h5 {
-    margin: 0;
+    font-size: 1.4em;
+    margin-top: 0;
 }
 
 .Account .fa-trash-o {
@@ -100,4 +107,77 @@
 .Account .fa-trash-o:hover {
     color: red;
     transform: scale(1.2);
+}
+
+.Account .addRecipeForm {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: rgba(216, 207, 109, 0.25);
+    width: 100%;
+    padding: 2% 5%;
+    margin: 3.25% 0;
+    text-transform: initial;
+}
+
+.Account .addRecipeForm h5 {
+    font-family: "Arima Madurai";
+    margin-bottom: 1%;
+}
+
+.Account .addRecipeForm h6 {
+    font-size: 0.8em;
+    margin-bottom: 3%;
+}
+
+.Account .addRecipeForm .inputField {
+    background-color: #fff;
+    margin-bottom: 8px;
+    height: 2rem;
+}
+
+.Account .addRecipeForm input[type="text"] {
+    width: 35%;
+    padding: 0 1%;
+    margin-right: 1%;
+}
+
+.Account .addRecipeForm div p {
+    margin: 1% 1% 0 0;
+    display: inline-block;
+}
+
+.Account .addRecipeForm i {
+    margin: 0 1%;
+    margin-block-start: 1%;
+    text-shadow: 0px 0.5px 1px rgba(34, 34, 34, 0.75);
+    color: rgb(83, 218, 68);
+    text-shadow: 0px 0.5px 1px rgba(34, 34, 34, 0.75);
+    font-size: 1.3em;
+    cursor: pointer;
+    transition: all .1s;
+}
+
+.Account .addRecipeForm i:hover {
+    transform: scale(1.05);
+}
+
+.Account .addRecipeForm .recipeBtn {
+    letter-spacing: 0;
+    text-transform: initial;
+    width: 15rem;
+    margin: 0 auto;
+}
+
+.Account .addRecipeForm #errorBar {
+    opacity: 0;
+    text-align: center;
+    color: #fff;
+    background-color: rgb(255, 0, 0);
+    display: none;
+}
+
+.fade{
+    color: aquamarine;
+    transition: 1s;    
 }

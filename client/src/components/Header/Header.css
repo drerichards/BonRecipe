@@ -58,12 +58,23 @@
 .Header button {
     letter-spacing: 0;
     text-transform: initial;
+    width: 10em;
+}
+
+.Header .acctBtn {
+    background-color: rgb(77, 179, 51);
+}
+
+.Header .acctBtn:hover {
+    background-color: rgb(90, 207, 61);
 }
 
 .Header .logoutBtn{
     background-color: rgb(41, 149, 192);
 }
-
+.Header .logoutBtn:hover {
+    background-color: rgb(48, 166, 212);
+}
 .Header button i {
     line-height: inherit;
 }

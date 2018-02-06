@@ -6,7 +6,7 @@ module.exports = app => {
     //get system-added recipes in user's account
     app.get('/sys_recipes/:username', (req, res) => {
         try {
-            User.findOne({username: req.params.username}, (err, items) => {
+            User.findOne({ username: req.params.username }, (err, items) => {
                 if (err) {
                     res.send(err)
                 }
@@ -37,7 +37,7 @@ module.exports = app => {
         }
     })
 
-//add system recipe to user sys_recipes account
+    //add system recipe to user sys_recipes account
     app.post('/sys_recipes/add/:username', (req, res) => {
         try {
             User.update({
@@ -63,6 +63,31 @@ module.exports = app => {
         }
     })
 
+    //add user recipe to user user_recipes account
+    app.post('/user_recipes/add/:username', (req, res) => {
+        try {
+            User.update({
+                username: req.params.username
+            }, {
+                    $addToSet: {
+                        user_recipes: {
+                            id: req.body.id,
+                            name: req.body.name,
+                            ingredients: req.body.ingredients
+                        }
+                    },
+                }, (err, response) => {
+                    if (err) {
+                        res.send(err)
+                    }
+                    res.send(response)
+                })
+        } catch (error) {
+            res.send(error)
+        }
+    })
+
+    //delete recipes
     app.put('/recipe/delete', (req, res) => {
         try {
             if (req.body[1] === 'sys_recipes') {

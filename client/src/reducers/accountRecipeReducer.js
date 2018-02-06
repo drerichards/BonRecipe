@@ -1,9 +1,12 @@
-import { FETCH_ACCOUNT_RECIPES, DELETE_RECIPE } from '../actions/types'
+import { FETCH_ACCOUNT_RECIPES, ADD_USER_RECIPE, DELETE_RECIPE } from '../actions/types'
 
 export default function (state = [[], []], action) {
     switch (action.type) {
         case FETCH_ACCOUNT_RECIPES:
             return action.payload
+        case ADD_USER_RECIPE:
+            const newState = [...state[1], action.payload]
+            return [state[0], newState]
         case DELETE_RECIPE:
             const data = action.payload
             if(data.type === 'sys_recipes'){

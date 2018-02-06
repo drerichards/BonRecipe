@@ -20,7 +20,7 @@ class Header extends Component {
                              Bon Recipe</h1></Link>
                         <div>
                             <h6>Logged in as: {this.props.auth.username}</h6>
-                            <Link to='/account'><Button waves='light'><i className="fa fa-list fa-1x" aria-hidden="true"></i> Account</Button></Link>
+                            <Link to='/account'><Button className='acctBtn' waves='light'><i className="fa fa-list fa-1x" aria-hidden="true"></i> Account</Button></Link>
                             <Button className='logoutBtn' waves='light' onClick={() => this.onLogoutClick()}><i className="fa fa-sign-out"></i> Logout</Button>
                         </div>
                     </div> :
