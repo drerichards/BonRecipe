@@ -5,7 +5,8 @@ import { FETCH_ACCOUNT_RECIPES } from './types'
 import { CREATE_USER } from './types'
 import { LOGIN_USER } from './types'
 import { LOGOUT_USER } from './types'
-import { ADD_SYS_RECIPE } from './types'
+// import { ADD_SYS_RECIPE } from './types'
+import { DELETE_RECIPE } from './types'
 
 export const fetchAPIRecipes = dispatch => { //dispatch is bridge to reducer 
     try {
@@ -102,8 +103,24 @@ export const addSysRecipe = (dispatch, username, recipe) => {
         const route = `http://localhost:5000/sys_recipes/add/${username}`
         axios.post(route, recipe)
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 // dispatch({ type: CREATE_USER, payload:  recipe.username  })
+            })
+            .catch(error => {
+                return error
+            })
+    } catch (error) {
+        return error
+    }
+}
+
+export const deleteRecipe = (dispatch, body) => {
+    try {
+        const route = `http://localhost:5000/recipe/delete`
+        axios.put(route, body)
+            .then(response => {
+                console.log(response)
+                dispatch({ type: DELETE_RECIPE, payload: { type: body[1], index: body[3] } })
             })
             .catch(error => {
                 return error

@@ -3,6 +3,7 @@
     width: 80vw;
     margin: 0 auto;
     text-align: left;
+    text-transform: capitalize;    
 }
 
 .Account h4 {
@@ -17,7 +18,7 @@
 
 .Account .sysCollapse,
 .Account .userCollapse {
-    flex-basis: 40%
+    flex-basis: 45%
 }
 
 .Account .collapsible-header {
@@ -29,7 +30,8 @@
     transition: all 0.35s;    
 }
 
-.Account .collapsible-header:hover {
+.Account .sysCollapse .collapsible-header:hover,
+.Account .userCollapse .collapsible-header:hover {
     background-color: rgba(196, 232, 18, 0.424);
 }
 
@@ -42,7 +44,7 @@
 }
 
 .Account .collapsible-body {
-    padding: 0.5em 2em;
+    padding: 0.5em 1em 0.5em 2em;
 }
 
 .Account .tab-content {
@@ -82,21 +84,20 @@
 .Account .ingredSection aside .ingredients {
     flex: 1 0 40%;
     margin: 1%;
-    text-transform: capitalize;
 }
 
 .Account .ingredSection h5 {
     margin: 0;
 }
 
-.Account .sys_recipes i {
+.Account .fa-trash-o {
     font-size: 1.8em;
     cursor: pointer;
     transition: all 0.25s;
-    margin: 6em 0em 0em 2em;
+    margin: 6em 0em 0em 1em;
 }
 
-.Account .sys_recipes i:hover {
+.Account .fa-trash-o:hover {
     color: red;
     transform: scale(1.2);
 }

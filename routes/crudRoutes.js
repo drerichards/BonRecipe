@@ -39,7 +39,6 @@ module.exports = app => {
 
 //add system recipe to user sys_recipes account
     app.post('/sys_recipes/add/:username', (req, res) => {
-        console.log(req.body)
         try {
             User.update({
                 username: req.params.username
@@ -59,6 +58,45 @@ module.exports = app => {
                     }
                     res.send(response)
                 })
+        } catch (error) {
+            res.send(error)
+        }
+    })
+
+    app.put('/recipe/delete', (req, res) => {
+        try {
+            if (req.body[1] === 'sys_recipes') {
+                User.update({
+                    username: req.body[0]
+                }, {
+                        $pull: {
+                            sys_recipes: {
+                                id: req.body[2]
+                            }
+                        }
+                    }, (err, response) => {
+                        if (err) {
+                            res.send(err)
+                        }
+                        res.send(response)
+
+                    })
+            } else if (req.body[1] === 'user_recipes') {
+                User.update({
+                    username: req.body[0]
+                }, {
+                        $pull: {
+                            user_recipes: {
+                                id: req.body[2]
+                            }
+                        }
+                    }, (err, response) => {
+                        if (err) {
+                            res.send(err)
+                        }
+                        res.send(response)
+                    })
+            }
         } catch (error) {
             res.send(error)
         }
