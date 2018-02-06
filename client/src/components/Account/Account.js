@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Collapsible, CollapsibleItem, Button } from 'react-materialize'
+import { Collapsible, CollapsibleItem, Button, Modal, Row, Input } from 'react-materialize'
 import { fetchAccountRecipes, addUserRecipe, deleteRecipe } from '../../actions/index'
 import './Account.css'
 
@@ -83,11 +83,23 @@ class Account extends Component {
         })
     }
 
+    collectEditData(e) {
+        e.preventDefault()
+        const modalId = e.target.parentNode.parentNode.id
+        const editfields = Array.prototype.slice.call(document.querySelectorAll(`#${modalId} .input-field`))
+        return editfields.map((edit, i) => {
+            return console.log(edit.innerHTML);
+        })
+    }
+
     renderUserRecipes() {
         const userRecipes = this.props.accountRecipes[1]
         return userRecipes.map((recipe, i) => {
             const ingredList = recipe.ingredients.map((item, i) => {
                 return <div key={i} className="ingredients">{i + 1}. {item}</div>
+            })
+            const editIngredList = recipe.ingredients.map((item, i) => {
+                return <Input key={i} className="editField" s={6} defaultValue={item} />
             })
             return <CollapsibleItem key={i} header={recipe.name}>
                 <div className="tab-content">
@@ -95,9 +107,20 @@ class Account extends Component {
                         <h5>Ingredients:</h5>
                         <aside>{ingredList}</aside>
                     </section>
-                    <label id={recipe.id}>
-                        <i className='fa fa-trash-o fa-1x' onClick={e => { this.onDeleteClick(e.target.parentNode.id, 'user_recipes', i) }}></i>
-                    </label>
+                    <div className='iconSection'>
+                        <Modal
+                            header='Edit Recipe?'
+                            trigger={<div><i className='fa fa-edit fa-1x'></i> Edit</div>}>
+                            <Row>
+                                <Input defaultValue={recipe.name} s={12} label="Recipe Title" />
+                                {editIngredList}
+                            </Row>
+                            <Button className='' waves='light' onClick={e => this.collectEditData(e)}><i className='fa fa-check-circle fa-1x'></i> Save Changes</Button>
+                        </Modal>
+                        <label id={recipe.id}>
+                            <i className='fa fa-trash-o fa-1x' onClick={e => { this.onDeleteClick(e.target.parentNode.id, 'user_recipes', i) }}></i>
+                        </label>
+                    </div>
                 </div>
             </CollapsibleItem>
         })

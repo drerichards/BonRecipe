@@ -6,6 +6,13 @@
     text-transform: capitalize;
 }
 
+/* #modal_0>div.modal-content>button */
+.Account button,
+.modal button {
+    letter-spacing: 0;
+    text-transform: initial;
+}
+
 .Account h4 {
     font-family: "Elsie", 'Times New Roman', serif;
     text-align: center;
@@ -80,7 +87,6 @@
     overflow: auto;
 }
 
-
 .Account .ingredSection aside {
     display: flex;
     flex-wrap: wrap;
@@ -97,11 +103,33 @@
     margin-top: 0;
 }
 
+.Account .iconSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1%;
+}
+
+.Account .fa-edit {
+    font-size: 1.8em;
+    cursor: pointer;
+    transition: all 0.25s;
+    color: #9e9e9e;
+    margin: 0;
+    display: inline-flex;
+}
+
+.Account .fa-edit:hover {
+    color: rgb(255, 166, 0);
+    transform: scale(1.2);
+}
+
 .Account .fa-trash-o {
     font-size: 1.8em;
     cursor: pointer;
     transition: all 0.25s;
-    margin: 6em 0em 0em 1em;
+    margin: 0;
 }
 
 .Account .fa-trash-o:hover {
@@ -163,8 +191,6 @@
 }
 
 .Account .addRecipeForm .recipeBtn {
-    letter-spacing: 0;
-    text-transform: initial;
     width: 15rem;
     margin: 0 auto;
 }
@@ -177,7 +203,7 @@
     display: none;
 }
 
-.fade{
+.fade {
     color: aquamarine;
-    transition: 1s;    
+    transition: 1s;
 }
