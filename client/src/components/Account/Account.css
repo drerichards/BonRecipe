@@ -1,12 +1,11 @@
 .Account {
     position: relative;
-    width: 80vw;
+    width: 90vw;
     margin: 0 auto;
     text-align: left;
     text-transform: capitalize;
 }
 
-/* #modal_0>div.modal-content>button */
 .Account button,
 .modal button {
     letter-spacing: 0;
@@ -20,18 +19,20 @@
 
 .Account .collapse-container {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    /* justify-content: space-around; */
 }
 
 .Account .sysCollapse,
 .Account .userCollapse {
-    flex-basis: 45%
+    flex-basis: 45%;
+    overflow: auto;
+    /* height: 35em; */
 }
 
 .Account .collapsible-header {
     margin: 0.3% 0;
     font-family: "Arima Madurai";
-    font-weight: 600;
     font-size: 1.1em;
     letter-spacing: 1px;
     transition: all 0.35s;
@@ -51,7 +52,7 @@
 }
 
 .Account .collapsible-body {
-    padding: 0.5em 1em 0.5em 2em;
+    padding: 0.5em 0.25em 0.5em 2em;
 }
 
 .Account .tab-content {
@@ -69,7 +70,7 @@
 
 .Account .imageSection img {
     display: block;
-    width: 65%;
+    width: 75%;
     margin-bottom: 1%;
 }
 
@@ -96,6 +97,7 @@
 .Account .ingredSection aside .ingredients {
     flex: 1 0 40%;
     margin: 1%;
+    font-size: 0.95em;
 }
 
 .Account .ingredSection h5 {
@@ -103,24 +105,34 @@
     margin-top: 0;
 }
 
+div.collapsible-body>div>div>div {
+    margin-bottom: 2em;
+    text-align: center;
+}
+
 .Account .iconSection {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1%;
+    padding: 0 3%;
 }
 
-.Account .fa-edit {
-    font-size: 1.8em;
+.Account .fa-pencil {
+    font-size: 1.45em;
     cursor: pointer;
     transition: all 0.25s;
     color: #9e9e9e;
     margin: 0;
-    display: inline-flex;
+    display: block;
 }
 
-.Account .fa-edit:hover {
+.Account .iconSection p {
+    margin: 0;
+    font-size: 0.7em;
+}
+
+.Account .fa-pencil:hover {
     color: rgb(255, 166, 0);
     transform: scale(1.2);
 }
@@ -130,6 +142,10 @@
     cursor: pointer;
     transition: all 0.25s;
     margin: 0;
+}
+
+.Account .sysCollapse .fa-trash-o {
+    margin: 8em 1em 0;
 }
 
 .Account .fa-trash-o:hover {
@@ -144,7 +160,7 @@
     background: rgba(216, 207, 109, 0.25);
     width: 100%;
     padding: 2% 5%;
-    margin: 3.25% 0;
+    margin: 0;
     text-transform: initial;
 }
 
@@ -195,7 +211,8 @@
     margin: 0 auto;
 }
 
-.Account .addRecipeForm #errorBar {
+.Account .addRecipeForm #errorBar,
+#modalErrorBar {
     opacity: 0;
     text-align: center;
     color: #fff;
@@ -206,4 +223,55 @@
 .fade {
     color: aquamarine;
     transition: 1s;
+}
+
+.modal-content h4 {
+    font-family: "Elsie", 'Times New Roman', serif;
+    background-color: rgb(41, 149, 192);
+    color: #fff;
+    text-align: center;
+    padding: 1%;
+}
+
+.modal-content .modalBody {
+    background: rgba(216, 207, 109, 0.25);
+    padding: 1%;
+}
+
+.modal-content .modalBody h6 {
+    font-family: "Arima Madurai";
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+.modal-content .modalBody .editRecipeTitle,
+.modal-content>div>.editIngredSpan .modalIngredient {
+    background-color: #fff;
+    padding: 0 0.5%;
+}
+
+.modal-content>div>.editIngredSpan {
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.modal-content>div>.editIngredSpan .modalIngredient {
+    margin: 1% 2%;
+    width: 45%;
+}
+
+.modal-footer button:hover {
+    background-color: #ccc;
+}
+
+@media screen and (min-width: 1020px) {
+    .Account .sysCollapse,
+    .Account .userCollapse {
+        overflow: initial;
+        height: initial;
+    }
+    .Account .collapse-container {
+        justify-content: space-around;
+        flex-direction: row;
+    }
 }

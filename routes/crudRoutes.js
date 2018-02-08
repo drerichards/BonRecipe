@@ -87,6 +87,28 @@ module.exports = app => {
         }
     })
 
+    app.post('/user_recipes/edit/:username', (req, res) => {
+        try {
+            User.findOneAndUpdate({
+                username: req.params.username,
+                'user_recipes.id': req.body[0][1]
+            }, {
+                    $set: {
+                        'user_recipes.$.name': req.body[0][0],
+                        'user_recipes.$.ingredients': req.body[1]
+                    },
+                }, { new: true },
+                (err, response) => {
+                    if (err) {
+                        res.send(err)
+                    }
+                    res.send(response)
+                })
+        } catch (error) {
+            res.send(error)
+        }
+    })
+
     //delete recipes
     app.put('/recipe/delete', (req, res) => {
         try {

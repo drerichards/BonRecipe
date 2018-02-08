@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import ErrorBoundary from '../ErrorBoundary'
 import Search from './Search/Search'
 import Cards from './Cards/Cards'
-import { connect } from 'react-redux'
 import { fetchAPIRecipes } from '../../actions/index'
 
 class Home extends Component {

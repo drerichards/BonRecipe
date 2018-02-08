@@ -6,6 +6,7 @@ import { CREATE_USER } from './types'
 import { LOGIN_USER } from './types'
 import { LOGOUT_USER } from './types'
 import { ADD_USER_RECIPE } from './types'
+import { EDIT_USER_RECIPE } from './types'
 import { DELETE_RECIPE } from './types'
 
 export const fetchAPIRecipes = dispatch => { //dispatch is bridge to reducer 
@@ -62,10 +63,10 @@ export const createUser = (dispatch, userBody) => {
         const route = `http://localhost:5000/api/users`
         axios.post(route, userBody)
             .then(response => {
-                dispatch({ type: CREATE_USER, payload: { loggedIn: true, username: userBody.username } })
+                dispatch({ type: CREATE_USER, payload: { loggedIn: true, username: userBody.username, status: '' } })
             })
             .catch(error => {
-                dispatch({ type: CREATE_USER, payload: { loggedIn: false, username: null } })
+                dispatch({ type: CREATE_USER, payload: { loggedIn: false, username: null, status: error.response.data.error } })
             })
     } catch (error) {
         return error
@@ -77,12 +78,13 @@ export const loginUser = (dispatch, userBody) => {
         const route = `http://localhost:5000/api/auth/login`
         axios.post(route, userBody)
             .then(response => {
-                dispatch({ type: LOGIN_USER, payload: { loggedIn: true, username: userBody.username } })
+                dispatch({ type: LOGIN_USER, payload: { loggedIn: true, username: userBody.username, status: null } })
             })
             .catch(error => {
-                dispatch({ type: LOGIN_USER, payload: { loggedIn: false, username: null } })
+                dispatch({ type: LOGIN_USER, payload: { loggedIn: false, username: null, status: error.response.data } })
             })
     } catch (error) {
+        
         return error
     }
 }
@@ -115,6 +117,22 @@ export const addUserRecipe = (dispatch, username, recipe) => {
         .then(response => {
             dispatch({ type: ADD_USER_RECIPE, payload: recipe})            
         })
+        .catch(error => {
+            return error
+        })
+    } catch (error) {
+        return error
+    }
+}
+
+export const editUserRecipe = (dispatch, username, recipe) => {
+    try {
+            const route = `http://localhost:5000/user_recipes/edit/${username}`
+            axios.post(route, recipe)
+                .then(response => {
+            const editRecipe = {id: recipe[0][1], name: recipe[0][0], ingredients: recipe[1]}
+                dispatch({ type: EDIT_USER_RECIPE, payload: [editRecipe, recipe[0][2]] })
+            })
             .catch(error => {
                 return error
             })

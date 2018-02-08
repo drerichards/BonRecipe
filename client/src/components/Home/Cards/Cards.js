@@ -27,7 +27,13 @@ class Cards extends Component {
             image,
             time
         ]
+        let recipeTally = this.props.accountRecipes[0].length
+        console.log(recipeTally);
+        
         this.props.addRecipe(this.props.auth.username, body)
+        console.log(this.props.accountRecipes[0])
+        console.log(recipeTally);
+        
     }
 
     render() {

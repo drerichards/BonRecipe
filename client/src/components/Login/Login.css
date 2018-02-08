@@ -100,33 +100,11 @@
     border-right: 5px solid rgba(0, 0, 0, 0.6);
 }
 
-.Login .buttonSection {
-    font-family: "Varela Round", Calibri, 'Trebuchet MS', sans-serif;
-    margin: 2%;
+.Login #errorBar {
+    opacity: 0;
     text-align: center;
+    color: #fff;
+    background-color: rgb(255, 0, 0);
+    display: none;
 }
 
-.Login .buttonSection button{
-    display: block;
-    margin: 5% 0;
-}
-
-.Login .buttonSection a i {
-    margin: 0 5% 0 0;
-}
-
-.Login .buttonSection .googleBtn {
-    background-color: #db3236;
-}
-
-.Login .buttonSection .facebookBtn {
-    background-color: #3B5998;
-}
-
-.Login .buttonSection .googleBtn:hover {
-    background-color: #9b262a;
-}
-
-.Login .buttonSection .facebookBtn:hover {
-    background-color: rgb(49, 75, 124);
-}

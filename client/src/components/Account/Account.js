@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Collapsible, CollapsibleItem, Button, Modal, Row, Input } from 'react-materialize'
-import { fetchAccountRecipes, addUserRecipe, deleteRecipe } from '../../actions/index'
+import { fetchAccountRecipes, addUserRecipe, editUserRecipe, deleteRecipe } from '../../actions/index'
 import './Account.css'
 
 class Account extends Component {
     componentDidMount() {
-        this.props.fetchRecipes(this.props.auth.username)
+        if(this.props.auth.username){
+            this.props.fetchRecipes(this.props.auth.username)
+        }
     }
 
     onDeleteClick(recipeId, recipeType, i) {
@@ -23,6 +25,14 @@ class Account extends Component {
         ingredField.setAttribute("type", "text")
         ingredField.setAttribute("placeholder", "Add another")
         ingredAddList.insertAdjacentElement('beforeend', ingredField)
+    }
+
+    missingFieldCheck(elem) {
+        //show if missing recipe or ingredient
+        const errorBar = document.getElementById(elem)
+        errorBar.style.display = 'block'
+        errorBar.style.opacity = '1'
+        setTimeout(() => { errorBar.style.display = 'none' }, 3000)
     }
 
     onRecipeSubmit(e) {
@@ -51,12 +61,65 @@ class Account extends Component {
                 node.parentNode.removeChild(node);
             })
             this.props.addRecipe(this.props.auth.username, body)
-        } else {
-            const errorBar = document.getElementById('errorBar')
-            errorBar.style.display = 'block'
-            errorBar.style.opacity = '1'
-            setTimeout(() => { errorBar.style.display = 'none' }, 3000)
+        } else this.missingFieldCheck('errorBar')
+    }
+
+    triggerModal(e, recipe, index) {
+        e.preventDefault()
+        const editModal = document.querySelector('.editModal')
+        editModal.click() //trigger display
+        //create title input
+        const oldInputTitle = document.querySelector('.editRecipeTitle')
+        const editRecipeTitle = document.createElement('input')
+        editRecipeTitle.setAttribute('class', 'editRecipeTitle')
+        editRecipeTitle.setAttribute('type', 'text')
+        editRecipeTitle.setAttribute('value', recipe.name)
+        editRecipeTitle.setAttribute('required', 'true')
+        oldInputTitle.replaceWith(editRecipeTitle)
+        // create ingred list
+        const oldIngredSpan = document.querySelector('.editIngredSpan')
+        const editIngredSpan = document.createElement('span')
+        editIngredSpan.setAttribute('class', 'editIngredSpan')
+        //hidden recipe id
+        const recipeId = document.createElement('input')
+        const recipeIdx = document.createElement('input')
+        recipeId.setAttribute('value', recipe.id)
+        recipeId.setAttribute('type', 'hidden')        
+        recipeIdx.setAttribute('value', index)
+        recipeIdx.setAttribute('type', 'hidden')
+
+        editIngredSpan.appendChild(recipeId)
+        editIngredSpan.appendChild(recipeIdx)
+        oldIngredSpan.replaceWith(editIngredSpan)
+        //add ingred fields
+        for (let i = 0; i < recipe.ingredients.length; i++) {
+            const modalIngredient = document.createElement('input')
+            modalIngredient.setAttribute('type', 'text')
+            modalIngredient.setAttribute('value', recipe.ingredients[i])
+            modalIngredient.classList.add('modalIngredient')
+            editIngredSpan.appendChild(modalIngredient)
         }
+    }
+
+    collectEditData(e) {
+        e.preventDefault()
+        const closeBtn = document.querySelector('.modal-close')
+        const editFieldArr = []
+        const finalRecipeArr = []
+        const inputs = Array.prototype.slice.call(document.querySelectorAll('.modalBody input'))
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[0].value.length < 1 || inputs[3].value.length < 1) {
+                this.missingFieldCheck('modalErrorBar')
+                return //exit loop if no title or no ingreds
+            } else if (inputs[i].value.length > 0) { //skips blank entries
+                editFieldArr.push(inputs[i].value)
+            }
+        }
+        finalRecipeArr.push(editFieldArr.splice(0, 3)) //extract title, id and index to final arr
+        finalRecipeArr.push(editFieldArr) //group ingreds in one array body
+
+        this.props.editRecipe(this.props.auth.username, finalRecipeArr)
+        closeBtn.click()
     }
 
     renderSysRecipes() {
@@ -83,23 +146,11 @@ class Account extends Component {
         })
     }
 
-    collectEditData(e) {
-        e.preventDefault()
-        const modalId = e.target.parentNode.parentNode.id
-        const editfields = Array.prototype.slice.call(document.querySelectorAll(`#${modalId} .input-field`))
-        return editfields.map((edit, i) => {
-            return console.log(edit.innerHTML);
-        })
-    }
-
     renderUserRecipes() {
         const userRecipes = this.props.accountRecipes[1]
         return userRecipes.map((recipe, i) => {
             const ingredList = recipe.ingredients.map((item, i) => {
                 return <div key={i} className="ingredients">{i + 1}. {item}</div>
-            })
-            const editIngredList = recipe.ingredients.map((item, i) => {
-                return <Input key={i} className="editField" s={6} defaultValue={item} />
             })
             return <CollapsibleItem key={i} header={recipe.name}>
                 <div className="tab-content">
@@ -108,15 +159,7 @@ class Account extends Component {
                         <aside>{ingredList}</aside>
                     </section>
                     <div className='iconSection'>
-                        <Modal
-                            header='Edit Recipe?'
-                            trigger={<div><i className='fa fa-edit fa-1x'></i> Edit</div>}>
-                            <Row>
-                                <Input defaultValue={recipe.name} s={12} label="Recipe Title" />
-                                {editIngredList}
-                            </Row>
-                            <Button className='' waves='light' onClick={e => this.collectEditData(e)}><i className='fa fa-check-circle fa-1x'></i> Save Changes</Button>
-                        </Modal>
+                        <div onClick={e => this.triggerModal(e, recipe, i)}><i className='fa fa-pencil fa-1x'></i> <p> Edit</p></div>
                         <label id={recipe.id}>
                             <i className='fa fa-trash-o fa-1x' onClick={e => { this.onDeleteClick(e.target.parentNode.id, 'user_recipes', i) }}></i>
                         </label>
@@ -125,8 +168,6 @@ class Account extends Component {
             </CollapsibleItem>
         })
     }
-
-
 
     render() {
         return <div className='Account'>
@@ -141,6 +182,16 @@ class Account extends Component {
                     }
                 </div>
                 <div className="userCollapse">
+                    <Modal header='Edit Recipe?' trigger={<p className='editModal'></p>}>
+                        <span id="modalErrorBar">Recipe title and at least one ingredient is Required</span>
+                        <Row className='modalBody'>
+                            <h6>Recipe Title:</h6>
+                            <Input className='editRecipeTitle' s={12} />
+                            <h6>Ingredients:</h6>
+                            <span className="editIngredSpan"></span>
+                        </Row>
+                        <Button waves='light' className='saveBtn' onClick={e => this.collectEditData(e)}><i className='fa fa-check-circle fa-1x'></i> Save Changes</Button>
+                    </Modal>
                     <p>{this.props.auth.username}'s Recipes: {this.props.accountRecipes[1].length}</p>
                     {this.props.accountRecipes[1].length === 0 ? 'No Recipes to Display' :
                         <Collapsible className='collapsible card' accordion>
@@ -173,6 +224,7 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchRecipes: username => fetchAccountRecipes(dispatch, username),
         addRecipe: (username, recipe) => addUserRecipe(dispatch, username, recipe),
+        editRecipe: (username, recipe) => editUserRecipe(dispatch, username, recipe),
         deleteRecipe: body => deleteRecipe(dispatch, body)
     }
 }

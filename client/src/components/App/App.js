@@ -13,7 +13,7 @@ export const history = createHistory()
 class App extends Component {
   render() {
     return (
-      <Router history={history}> 
+      <Router history={history}>
         {/* root */}
         <ErrorBoundary>
           <div className="App">
@@ -23,42 +23,27 @@ class App extends Component {
               <Header />
             </ErrorBoundary>
 
+            {/* login */}
+            <ErrorBoundary>
+              <Route path='/login' component={Login} />
+            </ErrorBoundary>
+
+            {
+              !this.props.auth.loggedIn ?
+                <Redirect to="/login" />: ''
+            }
 
             {/* home */}
             <ErrorBoundary>
               <Route exact path='/' component={Home} />
             </ErrorBoundary>
 
-            <Route path="/" render={() => (
-              this.props.auth.loggedIn === true ? (
-                <Redirect to="/" />
-              ) : (
-                  <Redirect to="/login" />
-                )
-            )} />
-
-            {/* userInfo */}
-            {/* <ErrorBoundary> */}
-              {/* <Route path='/:userId/:userEmail/:userName/:userService' component={Home} /> */}
-            {/* </ErrorBoundary> */}
-
             {/* account */}
             <ErrorBoundary>
               <Route path='/account' component={Account} />
             </ErrorBoundary>
+            
 
-            <Route path="/account" render={() => (
-              this.props.auth.loggedIn === true ? (
-                <Redirect to="/account" />
-              ) : (
-                  <Redirect to="/login" />
-                )
-            )} />
-
-            {/* login */}
-            <ErrorBoundary>
-              <Route path='/login' component={Login} />
-            </ErrorBoundary>
           </div>
         </ErrorBoundary>
       </Router>
@@ -67,4 +52,4 @@ class App extends Component {
 }
 
 const mapStateToProps = ({ auth }) => { return { auth } }
-  export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App)
