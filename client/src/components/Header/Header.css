@@ -26,7 +26,7 @@
 .Header h1 {
     display: inline-block;
     position: initial;
-    font-size: 3.5em;
+    font-size: 2.5em;
     margin: 0;
     font-family: "Elsie", 'Times New Roman', Times, serif;
 }
@@ -53,12 +53,10 @@
     font-family: "Elsie", 'Times New Roman', Times, serif;
 }
 
-.Header .headerNav {}
-
 .Header button {
     letter-spacing: 0;
     text-transform: initial;
-    width: 10em;
+    width: 9.25em;
 }
 
 .Header .acctBtn {
@@ -94,8 +92,23 @@
     font-size: 0.9em;
 }
 
-@media screen and (min-width: 750px) {
+@media  (min-width: 320px) and (max-width: 740px) and (orientation: landscape) {
     .Header .nav>div {
         flex-direction: row;
+    }
+    .Header button {
+        width: 10em;
+    }
+}
+
+@media  (min-width: 750px) {
+    .Header h1 {
+        font-size: 3.5em;
+    }
+    .Header .nav>div {
+        flex-direction: row;
+    }
+    .Header button {
+        width: 10em;
     }
 }

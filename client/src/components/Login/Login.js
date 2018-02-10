@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Button, Input } from 'react-materialize'
 import { createUser, loginUser } from '../../actions/index'
@@ -9,6 +9,7 @@ class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            showError: false,
             hasAccount: false,
             username: '',
             password: '',
@@ -17,13 +18,12 @@ class Login extends Component {
             buttonText: `Sign In`
         }
     }
-    componentDidUpdate() {
-        this.loginErrorMsg()
-    }
 
     handleAcctToggle() {
-        this.setState({ hasAccount: !this.state.hasAccount })
-        if (this.state.hasAccount === true) {
+        const { hasAccount } = this.state
+        this.setState(() => ({ showError: false }))
+        this.setState({ hasAccount: !hasAccount })
+        if (!hasAccount) {
             return this.setState({
                 tooltipText: `Have an Account?`,
                 headerText: `Create An Account`,
@@ -38,6 +38,7 @@ class Login extends Component {
         }
     }
 
+
     handleUNChange(e) {
         this.setState({ username: e.target.value })
     }
@@ -46,27 +47,24 @@ class Login extends Component {
         this.setState({ password: e.target.value })
     }
 
-    loginErrorMsg() {
-        if (this.props.auth.status) {
-            const errorBar = document.getElementById('errorBar')
-            errorBar.innerHTML = `Error: ${this.props.auth.status}. Please try again!`
-            errorBar.style.display = 'block'
-            errorBar.style.opacity = '1'
-            setTimeout(() => { errorBar.style.display = 'none' }, 3000)
-        }
+    loginErrorMsg(status) {
+        const errorMsg = `Error: ${status}. Please try again!`
+
+        return errorMsg
     }
 
     handleLoginClick(e) {
         e.preventDefault()
         const userBody = { username: this.state.username, password: this.state.password }
+        this.setState(() => ({ showError: true }))
         this.state.buttonText === 'Register' ? this.props.createUser(userBody) : this.props.loginUser(userBody)
-        this.loginErrorMsg()
     }
 
     render() {
         if (this.props.auth.loggedIn === true) {
             return <Redirect to="/" />
         }
+
         return (
             <div className="Login">
                 <section className="card form-module">
@@ -78,8 +76,8 @@ class Login extends Component {
                         <Input type="text" autoComplete='true' required label="Username" defaultValue={this.state.username} onChange={e => this.handleUNChange(e)} />
                         <Input type="password" autoComplete='true' required label="Password" defaultValue={this.state.password} onChange={e => this.handlePWChange(e)} />
                         <Button className='button' waves='light' onClick={e => this.handleLoginClick(e)}>{this.state.buttonText}</Button>
+                        {this.props.auth.status !== '' && this.state.showError ? <span id='errorBar'>Error: {this.props.auth.status}. Please try again!</span> : ''}
                     </form>
-                    <span id='errorBar'></span>
                 </section>
             </div>
         )

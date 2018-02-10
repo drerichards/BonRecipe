@@ -66,7 +66,8 @@ export const createUser = (dispatch, userBody) => {
                 dispatch({ type: CREATE_USER, payload: { loggedIn: true, username: userBody.username, status: '' } })
             })
             .catch(error => {
-                dispatch({ type: CREATE_USER, payload: { loggedIn: false, username: null, status: error.response.data.error } })
+
+                dispatch({ type: CREATE_USER, payload: { loggedIn: false, username: null, status: error.response.data.message } })
             })
     } catch (error) {
         return error
@@ -78,9 +79,11 @@ export const loginUser = (dispatch, userBody) => {
         const route = `http://localhost:5000/api/auth/login`
         axios.post(route, userBody)
             .then(response => {
-                dispatch({ type: LOGIN_USER, payload: { loggedIn: true, username: userBody.username, status: null } })
+                dispatch({ type: LOGIN_USER, payload: { loggedIn: true, username: userBody.username, status: '' } })
             })
             .catch(error => {
+                console.log('login', error);
+                
                 dispatch({ type: LOGIN_USER, payload: { loggedIn: false, username: null, status: error.response.data } })
             })
     } catch (error) {
@@ -92,7 +95,7 @@ export const loginUser = (dispatch, userBody) => {
 export const logoutUser = dispatch => {
     try {
         window.localStorage.clear()
-        dispatch({ type: LOGOUT_USER, payload: { loggedIn: false, username: null } })
+        dispatch({ type: LOGOUT_USER, payload: { loggedIn: false, username: null, status: '' } })
     } catch (error) {
         return error
     }

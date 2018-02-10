@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Router, Route, Redirect } from 'react-router-dom'
+import { Router, Route, Redirect, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
 import ErrorBoundary from '../ErrorBoundary'
@@ -7,13 +7,13 @@ import Home from '../Home/Home'
 import Header from '../Header/Header'
 import Login from '../Login/Login'
 import Account from '../Account/Account'
-import './App.css'
 
 export const history = createHistory()
 class App extends Component {
   render() {
     return (
       <Router history={history}>
+        <Switch>
         {/* root */}
         <ErrorBoundary>
           <div className="App">
@@ -46,6 +46,7 @@ class App extends Component {
 
           </div>
         </ErrorBoundary>
+        </Switch>
       </Router>
     )
   }

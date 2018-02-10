@@ -2,6 +2,7 @@
     position: relative;
     width: 90vw;
     margin: 0 auto;
+    height: 80vh;
     text-align: left;
     text-transform: capitalize;
 }
@@ -15,19 +16,24 @@
 .Account h4 {
     font-family: "Elsie", 'Times New Roman', serif;
     text-align: center;
+    margin: 1% auto 0;
 }
 
 .Account .collapse-container {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
+    height: 100%;
+    overflow: auto;
 }
 
 .Account .sysCollapse,
 .Account .userCollapse {
     flex-basis: 45%;
+}
+
+.Account .collapsible {
     overflow: auto;
-    /* height: 35em; */
+    max-height: 15em;
 }
 
 .Account .collapsible-header {
@@ -36,6 +42,7 @@
     font-size: 1.1em;
     letter-spacing: 1px;
     transition: all 0.35s;
+    padding: 0.5rem 1rem;
 }
 
 .Account .sysCollapse .collapsible-header:hover,
@@ -52,11 +59,13 @@
 }
 
 .Account .collapsible-body {
-    padding: 0.5em 0.25em 0.5em 2em;
+    padding: 0.5em 0.25em 0.5em 0.5em;
+    /* padding: 0.5em 0.25em 0.5em 2em; */
 }
 
 .Account .tab-content {
     display: flex;
+    max-height: 8em;
 }
 
 .Account .imageSection {
@@ -81,6 +90,7 @@
 .Account .ingredSection {
     flex-basis: 70%;
     overflow: auto;
+    overflow-x: hidden;
 }
 
 .Account .userCollapse .ingredSection {
@@ -95,7 +105,8 @@
 }
 
 .Account .ingredSection aside .ingredients {
-    flex: 1 0 40%;
+    flex: 1 0 100%;
+    /* flex: 1 0 40%; */
     margin: 1%;
     font-size: 0.95em;
 }
@@ -145,7 +156,7 @@ div.collapsible-body>div>div>div {
 }
 
 .Account .sysCollapse .fa-trash-o {
-    margin: 8em 1em 0;
+    margin: 4em 0.25em 0;
 }
 
 .Account .fa-trash-o:hover {
@@ -181,7 +192,7 @@ div.collapsible-body>div>div>div {
 }
 
 .Account .addRecipeForm input[type="text"] {
-    width: 35%;
+    width: 45%;
     padding: 0 1%;
     margin-right: 1%;
 }
@@ -263,8 +274,37 @@ div.collapsible-body>div>div>div {
 .modal-footer button:hover {
     background-color: #ccc;
 }
+@media screen and (min-width: 320px) {
+    .Account .sysCollapse,
+    .Account .userCollapse {
+        overflow: initial;
+        height: initial;
+    }
+    .Account .collapse-container {
+        justify-content: space-around;
+        flex-direction: column;
+    }
+    .Account .collapsible {
+        max-height: initial;
+    }
+}
+@media screen and (min-width: 320px) and (max-width: 740px) and (orientation: landscape) {
+    .Account {
+        width: 95vw;
+        height: 65vh;
+    }
+    .Account .sysCollapse,
+    .Account .userCollapse {
+        flex-basis: 48%;
+    }
+    .Account .collapse-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
 
-@media screen and (min-width: 1020px) {
+
+@media screen and (min-height: 580px) and (min-width: 813px) {
     .Account .sysCollapse,
     .Account .userCollapse {
         overflow: initial;
@@ -274,4 +314,46 @@ div.collapsible-body>div>div>div {
         justify-content: space-around;
         flex-direction: row;
     }
+    .Account .collapsible {
+        max-height: initial;
+    }
+    .Account .collapsible-header {
+        padding: 1rem;
+    }
+    .Account .collapsible-body {
+        padding: 0.5em 0.25em 0.5em 2em;
+    }
+    .Account .addRecipeForm input[type="text"] {
+        width: 35%;
+    }
+    .Account .ingredSection aside .ingredients {
+        flex: 1 0 40%;
+    }
+    .Account .tab-content {
+        max-height: initial;
+    }
+    .Account .sysCollapse .fa-trash-o {
+        margin: 8em 1em 0;
+    }
+    .Account .ingredSection {
+        overflow: auto;
+    }
 }
+
+/* @media (min-width: 1020px) {
+    .Account .sysCollapse,
+    .Account .userCollapse {
+        overflow: initial;
+        height: initial;
+    }
+    .Account .collapse-container {
+        justify-content: space-around;
+        flex-direction: row;
+    }
+    .Account .collapsible-header {
+        padding: 1rem;
+    }
+    .Account .addRecipeForm input[type="text"] {
+        width: 35%;
+    }
+} */

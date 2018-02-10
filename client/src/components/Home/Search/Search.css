@@ -1,6 +1,5 @@
 .Search {
     width: 100%;
-    /* background-color: rgba(23, 163, 151, 0.826); */
     box-shadow: 1px 3px 12px #eee;
 }
 
@@ -20,4 +19,32 @@
     letter-spacing: 0;
     text-transform: initial;
     margin: 1%;
+}
+
+.Search .input-field {
+    margin-top: 0;
+    margin-right: 3%;
+}
+
+.Search .input-field input {
+    margin: 0;
+    margin-right: initial;
+}
+
+@media  (min-width: 320px) and (max-width: 830px) and (orientation: landscape) {
+    .Search .input-field {
+        margin-top: 0;
+    }
+    .Header button {
+        width: 10em;
+    }
+}
+
+@media  (min-width: 830px) {
+    .Search .input-field {
+        margin-top: 1rem;
+    }
+    .Search .input-field input {
+        margin: 0 0 20px 0;
+    }
 }
