@@ -11,8 +11,8 @@ const express = require('express'),
 const { router: usersRouter } = require('./users')
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth')
 
-app.use(cors({ origin: CLIENT_ORIGIN})) //enable all CORS requests from either the client or localhost 3000
-console.log(CLIENT_ORIGIN)
+// app.use(cors({ origin: CLIENT_ORIGIN})) //enable all CORS requests from either the client or localhost 3000
+app.use(cors())
 app.use(morgan('dev')) //output colored by response status for development use
 app.use(bodyParser.json())
 app.use((req, res, next) => {
