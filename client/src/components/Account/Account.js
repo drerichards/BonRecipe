@@ -5,7 +5,7 @@ import { fetchAccountRecipes, addUserRecipe, editUserRecipe, deleteRecipe } from
 import './Account.css'
 
 class Account extends Component {
-    componentDidMount() {
+    componentWillMount() {
         if(this.props.auth.username){
             this.props.fetchRecipes(this.props.auth.username)
         }

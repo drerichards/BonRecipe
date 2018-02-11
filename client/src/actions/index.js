@@ -5,6 +5,7 @@ import { FETCH_ACCOUNT_RECIPES } from './types'
 import { CREATE_USER } from './types'
 import { LOGIN_USER } from './types'
 import { LOGOUT_USER } from './types'
+import { ADD_SYS_RECIPE } from './types'
 import { ADD_USER_RECIPE } from './types'
 import { EDIT_USER_RECIPE } from './types'
 import { DELETE_RECIPE } from './types'
@@ -66,7 +67,6 @@ export const createUser = (dispatch, userBody) => {
                 dispatch({ type: CREATE_USER, payload: { loggedIn: true, username: userBody.username, status: '' } })
             })
             .catch(error => {
-
                 dispatch({ type: CREATE_USER, payload: { loggedIn: false, username: null, status: error.response.data.message } })
             })
     } catch (error) {
@@ -82,19 +82,16 @@ export const loginUser = (dispatch, userBody) => {
                 dispatch({ type: LOGIN_USER, payload: { loggedIn: true, username: userBody.username, status: '' } })
             })
             .catch(error => {
-                console.log('login', error);
-                
                 dispatch({ type: LOGIN_USER, payload: { loggedIn: false, username: null, status: error.response.data } })
             })
     } catch (error) {
-        
         return error
     }
 }
 
 export const logoutUser = dispatch => {
     try {
-        window.localStorage.clear()
+        localStorage.clear()
         dispatch({ type: LOGOUT_USER, payload: { loggedIn: false, username: null, status: '' } })
     } catch (error) {
         return error
@@ -102,9 +99,15 @@ export const logoutUser = dispatch => {
 }
 
 export const addSysRecipe = (dispatch, username, recipe) => {
+    // console.log(recipe);
+    
     try {
         const route = `http://localhost:5000/sys_recipes/add/${username}`
         axios.post(route, recipe)
+            .then(response => {
+                const sysRecipe = { id: recipe[0], name: recipe[1], ingredients: recipe[2], image: recipe[3], cookTime: recipe[4] }                
+                dispatch({ type: ADD_SYS_RECIPE, payload: sysRecipe })
+            })
             .catch(error => {
                 return error
             })

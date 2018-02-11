@@ -2,7 +2,7 @@
     position: relative;
     width: 90vw;
     margin: 0 auto;
-    height: 80vh;
+    height: 75vh;
     text-align: left;
     text-transform: capitalize;
 }
@@ -60,7 +60,6 @@
 
 .Account .collapsible-body {
     padding: 0.5em 0.25em 0.5em 0.5em;
-    /* padding: 0.5em 0.25em 0.5em 2em; */
 }
 
 .Account .tab-content {
@@ -88,14 +87,9 @@
 }
 
 .Account .ingredSection {
-    flex-basis: 70%;
-    overflow: auto;
-    overflow-x: hidden;
-}
-
-.Account .userCollapse .ingredSection {
     flex-basis: 90%;
     overflow: auto;
+    overflow-x: hidden;
 }
 
 .Account .ingredSection aside {
@@ -106,7 +100,6 @@
 
 .Account .ingredSection aside .ingredients {
     flex: 1 0 100%;
-    /* flex: 1 0 40%; */
     margin: 1%;
     font-size: 0.95em;
 }
@@ -274,24 +267,13 @@ div.collapsible-body>div>div>div {
 .modal-footer button:hover {
     background-color: #ccc;
 }
-@media screen and (min-width: 320px) {
-    .Account .sysCollapse,
-    .Account .userCollapse {
-        overflow: initial;
-        height: initial;
-    }
-    .Account .collapse-container {
-        justify-content: space-around;
-        flex-direction: column;
-    }
-    .Account .collapsible {
-        max-height: initial;
-    }
-}
-@media screen and (min-width: 320px) and (max-width: 740px) and (orientation: landscape) {
+
+
+
+@media screen and (min-height: 320px) and (max-width: 813px) and (orientation: landscape) {
     .Account {
         width: 95vw;
-        height: 65vh;
+        height: 70vh;
     }
     .Account .sysCollapse,
     .Account .userCollapse {
@@ -302,9 +284,21 @@ div.collapsible-body>div>div>div {
         justify-content: space-between;
     }
 }
-
-
-@media screen and (min-height: 580px) and (min-width: 813px) {
+@media screen and (min-height: 200px) and (max-width: 600px) and (orientation: landscape) {
+    .Account {
+        width: 95vw;
+        height: 75vh;
+    }
+    .Account .sysCollapse,
+    .Account .userCollapse {
+        flex-basis: 48%;
+    }
+    .Account .collapse-container {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+@media screen and (min-width: 813px) {
     .Account .sysCollapse,
     .Account .userCollapse {
         overflow: initial;
@@ -339,21 +333,3 @@ div.collapsible-body>div>div>div {
         overflow: auto;
     }
 }
-
-/* @media (min-width: 1020px) {
-    .Account .sysCollapse,
-    .Account .userCollapse {
-        overflow: initial;
-        height: initial;
-    }
-    .Account .collapse-container {
-        justify-content: space-around;
-        flex-direction: row;
-    }
-    .Account .collapsible-header {
-        padding: 1rem;
-    }
-    .Account .addRecipeForm input[type="text"] {
-        width: 35%;
-    }
-} */
