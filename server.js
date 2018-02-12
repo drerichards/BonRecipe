@@ -7,14 +7,11 @@ const express = require('express'),
     mongoose = require('mongoose'),
     passport = require('passport'),
     morgan = require('morgan'),
-{ DATABASE_URL, PORT, COOKIE_KEY, CLIENT_ORIGIN } = require('./config')
+{ DATABASE_URL, PORT } = require('./config')
 const { router: usersRouter } = require('./users')
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth')
 
-// app.use(cors({ origin: CLIENT_ORIGIN})) //enable all CORS requests from either the client or localhost 3000
 app.use(cors())
-app.use(morgan('dev')) //output colored by response status for development use
-app.use(bodyParser.json())
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*') //allow any origin to request the resource
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept') //indicattes which headers can be used in the actual request
@@ -22,6 +19,8 @@ app.use((req, res, next) => {
     next() //move on to next middleware in stack if present
 })
 
+app.use(morgan('dev')) //output colored by response status for development use
+app.use(bodyParser.json())
 mongoose.Promise = global.Promise
 mongoose.connect(DATABASE_URL)
 mongoose.connection.once('open', () => {
@@ -38,13 +37,6 @@ app.use('/api/auth/', authRouter)
 
 const jwtAuth = passport.authenticate('jwt', { session: false })
 
-// A protected endpoint which needs a valid JWT to access it
-app.get('/api/protected', jwtAuth, (req, res) => {
-    return res.json({
-        data: 'rosebud'
-    })
-})
-
 require('./routes/apiRecipeRoutes')(app)
 require('./routes/crudRoutes')(app)
 
@@ -52,8 +44,6 @@ app.use('*', (req, res) => {
     return res.status(404).json({ message: 'Not Found' }) //catchall for bad route requests
 })
 
-
-//other routes here
 const logErrors = (err, req, res, next) => {
     console.error(err.stack)
     return res.status(500).json({ error: 'Something went wrong' })
