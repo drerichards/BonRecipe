@@ -8,30 +8,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5% 0;
-}
-
-.Search .input-field {
-    width: 70%;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .Search button {
     letter-spacing: 0;
     text-transform: initial;
-    margin: 1%;
+    margin: 0 1%;
+    width: 5em;
 }
 
 .Search .input-field {
-    margin-top: 0;
+    width: 70%;
+    margin: 1em 0.5em;
     margin-right: 3%;
 }
 
 .Search .input-field input {
     margin: 0;
     margin-right: initial;
+    background-color: #fff;
 }
 
-@media  (min-width: 320px) and (max-width: 830px) and (orientation: landscape) {
+@media (min-width: 320px) and (max-width: 830px) and (orientation: landscape) {
     .Search .input-field {
         margin-top: 0;
     }
@@ -40,11 +39,8 @@
     }
 }
 
-@media  (min-width: 830px) {
+@media (min-width: 830px) {
     .Search .input-field {
         margin-top: 1rem;
-    }
-    .Search .input-field input {
-        margin: 0 0 20px 0;
     }
 }

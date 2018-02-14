@@ -43,19 +43,20 @@
     letter-spacing: 1px;
     transition: all 0.35s;
     padding: 0.5rem 1rem;
+    text-shadow: 1px 1px 1px #7a7a7a;
 }
 
 .Account .sysCollapse .collapsible-header:hover,
 .Account .userCollapse .collapsible-header:hover {
-    background-color: rgba(196, 232, 18, 0.424);
+    background-color: rgba(184, 206, 77, 0.493);
 }
 
 .Account .sysCollapse .collapsible-header {
-    background-color: rgba(53, 167, 177, 0.3);
+    background-color: rgba(79, 132, 139, 0.4);
 }
 
 .Account .userCollapse .collapsible-header {
-    background-color: rgba(195, 49, 73, 0.2);
+    background-color: rgba(163, 91, 103, 0.5);
 }
 
 .Account .collapsible-body {
@@ -224,14 +225,9 @@ div.collapsible-body>div>div>div {
     display: none;
 }
 
-.fade {
-    color: aquamarine;
-    transition: 1s;
-}
-
 .modal-content h4 {
     font-family: "Elsie", 'Times New Roman', serif;
-    background-color: rgb(41, 149, 192);
+    background-color: rgb(55, 133, 164);
     color: #fff;
     text-align: center;
     padding: 1%;
@@ -264,11 +260,13 @@ div.collapsible-body>div>div>div {
     width: 45%;
 }
 
+.modal-footer button {
+    background-color: rgb(226, 226, 226);
+}
+
 .modal-footer button:hover {
     background-color: #ccc;
 }
-
-
 
 @media screen and (min-height: 320px) and (max-width: 813px) and (orientation: landscape) {
     .Account {
@@ -284,6 +282,7 @@ div.collapsible-body>div>div>div {
         justify-content: space-between;
     }
 }
+
 @media screen and (min-height: 200px) and (max-width: 600px) and (orientation: landscape) {
     .Account {
         width: 95vw;
@@ -298,6 +297,7 @@ div.collapsible-body>div>div>div {
         justify-content: space-between;
     }
 }
+
 @media screen and (min-width: 813px) {
     .Account .sysCollapse,
     .Account .userCollapse {

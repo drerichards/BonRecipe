@@ -84,7 +84,7 @@ class Cards extends Component {
                             <ChipBar duplicateRecipe={this.state.duplicateRecipe} img={this.state.selectedRecipe[0]} text={this.state.selectedRecipe[1]} /> : ''
                         }
                     </span>
-                    <Modal header='How-To Guide' trigger={<Button><i className="fa fa-info-circle"></i></Button>}>
+                    <Modal header='How-To Guide' trigger={<Button><i className="fa fa-info-circle"></i> Guide</Button>}>
                         <div id='infoModal' className="modalBody">
                             <h5>Welcome to Bon Recipe!</h5>
                             <p>What's for dinner? If you've ever had to ask yourself this question,

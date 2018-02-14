@@ -1,0 +1,106 @@
+.slider {
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    background-color: #111111;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+}
+
+.slider li span {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    color: transparent;
+    background-size: cover;
+    background-position: center 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    backface-visibility: hidden;
+    animation: imageAnimation 125s linear infinite 0s;
+}
+
+.slider li {
+    list-style: none;
+}
+
+.slider li:nth-child(1) span {
+    background-image: url('https://res.cloudinary.com/andrerichards/image/upload/v1518604602/bonr/pasta.jpg');
+}
+
+.slider li:nth-child(2) span {
+    background-image: url('https://res.cloudinary.com/andrerichards/image/upload/v1518604602/bonr/cherry.jpg');
+    animation-delay: 25s;
+}
+
+.slider li:nth-child(3) span {
+    background-image: url('https://res.cloudinary.com/andrerichards/image/upload/v1518604602/bonr/muff.jpg');
+    animation-delay: 50s;
+}
+
+.slider li:nth-child(4) span {
+    background-image: url('https://res.cloudinary.com/andrerichards/image/upload/v1518604602/bonr/pizza.jpg');
+    animation-delay: 75s;
+}
+
+.slider li:nth-child(5) span {
+    background-image: url('https://res.cloudinary.com/andrerichards/image/upload/v1518604602/bonr/coco.jpg');
+    animation-delay: 100s;
+}
+
+.slider li:nth-child(1) div {
+    animation-delay: 25s;
+}
+
+.slider li:nth-child(2) div {
+    animation-delay: 25s;
+}
+
+.slider li:nth-child(3) div {
+    animation-delay: 50s;
+}
+
+.slider li:nth-child(4) div {
+    animation-delay: 75s;
+}
+
+.slider li:nth-child(5) div {
+    animation-delay: 100s;
+}
+
+/* Animation for the slideshow images */
+
+@keyframes imageAnimation {
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+    }
+    8% {
+        opacity: 1;
+        transform: scale(1.05);
+        animation-timing-function: ease-out;
+    }
+    17% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    25% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0
+    }
+}
+
+/* Show when animations not supported */
+
+.no-cssanimations .slider li span {
+    opacity: 1;
+}

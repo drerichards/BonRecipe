@@ -9,10 +9,11 @@ import { ADD_SYS_RECIPE } from './types'
 import { ADD_USER_RECIPE } from './types'
 import { EDIT_USER_RECIPE } from './types'
 import { DELETE_RECIPE } from './types'
+const url = 'https://bonrecipe-server.herokuapp.com'
 
 export const fetchAPIRecipes = dispatch => { //dispatch is bridge to reducer 
     try {
-        const route = `http://localhost:5000/api/recipes`
+        const route = `${url}/api/recipes`
         axios.get(route)
             .then(response => {
                 dispatch({ type: FETCH_API_RECIPES, payload: response.data })
@@ -27,7 +28,7 @@ export const fetchAPIRecipes = dispatch => { //dispatch is bridge to reducer
 
 export const fetchSearchRecipes = (dispatch, query) => {
     try {
-        const route = `http://localhost:5000/api/search_recipes/${query}`
+        const route = `${url}/api/search_recipes/${query}`
         axios.get(route)
             .then(response => {
                 dispatch({ type: FETCH_SEARCH_RECIPES, payload: response.data })
@@ -42,8 +43,8 @@ export const fetchSearchRecipes = (dispatch, query) => {
 
 export const fetchAccountRecipes = (dispatch, username) => {
     try {
-        const route1 = `http://localhost:5000/sys_recipes/${username}`
-        const route2 = `http://localhost:5000/user_recipes/${username}`
+        const route1 = `${url}/sys_recipes/${username}`
+        const route2 = `${url}/user_recipes/${username}`
         axios.all([
             axios.get(route1),
             axios.get(route2)
@@ -61,7 +62,7 @@ export const fetchAccountRecipes = (dispatch, username) => {
 
 export const createUser = (dispatch, userBody) => {
     try {
-        const route = `http://localhost:5000/api/users`
+        const route = `${url}/api/users`
         axios.post(route, userBody)
             .then(response => {
                 dispatch({ type: CREATE_USER, payload: { loggedIn: true, username: userBody.username, status: '' } })
@@ -76,7 +77,7 @@ export const createUser = (dispatch, userBody) => {
 
 export const loginUser = (dispatch, userBody) => {
     try {
-        const route = `http://localhost:5000/api/auth/login`
+        const route = `${url}/api/auth/login`
         axios.post(route, userBody)
             .then(response => {
                 dispatch({ type: LOGIN_USER, payload: { loggedIn: true, username: userBody.username, status: '' } })
@@ -99,13 +100,11 @@ export const logoutUser = dispatch => {
 }
 
 export const addSysRecipe = (dispatch, username, recipe) => {
-    // console.log(recipe);
-    
     try {
-        const route = `http://localhost:5000/sys_recipes/add/${username}`
+        const route = `${url}/sys_recipes/add/${username}`
         axios.post(route, recipe)
             .then(response => {
-                const sysRecipe = { id: recipe[0], name: recipe[1], ingredients: recipe[2], image: recipe[3], cookTime: recipe[4] }                
+                const sysRecipe = { id: recipe[0], name: recipe[1], ingredients: recipe[2], image: recipe[3], cookTime: recipe[4] }
                 dispatch({ type: ADD_SYS_RECIPE, payload: sysRecipe })
             })
             .catch(error => {
@@ -118,14 +117,14 @@ export const addSysRecipe = (dispatch, username, recipe) => {
 
 export const addUserRecipe = (dispatch, username, recipe) => {
     try {
-        const route = `http://localhost:5000/user_recipes/add/${username}`
+        const route = `${url}/user_recipes/add/${username}`
         axios.post(route, recipe)
-        .then(response => {
-            dispatch({ type: ADD_USER_RECIPE, payload: recipe})            
-        })
-        .catch(error => {
-            return error
-        })
+            .then(response => {
+                dispatch({ type: ADD_USER_RECIPE, payload: recipe })
+            })
+            .catch(error => {
+                return error
+            })
     } catch (error) {
         return error
     }
@@ -133,10 +132,10 @@ export const addUserRecipe = (dispatch, username, recipe) => {
 
 export const editUserRecipe = (dispatch, username, recipe) => {
     try {
-            const route = `http://localhost:5000/user_recipes/edit/${username}`
-            axios.post(route, recipe)
-                .then(response => {
-            const editRecipe = {id: recipe[0][1], name: recipe[0][0], ingredients: recipe[1]}
+        const route = `${url}/user_recipes/edit/${username}`
+        axios.post(route, recipe)
+            .then(response => {
+                const editRecipe = { id: recipe[0][1], name: recipe[0][0], ingredients: recipe[1] }
                 dispatch({ type: EDIT_USER_RECIPE, payload: [editRecipe, recipe[0][2]] })
             })
             .catch(error => {
@@ -149,7 +148,7 @@ export const editUserRecipe = (dispatch, username, recipe) => {
 
 export const deleteRecipe = (dispatch, body) => {
     try {
-        const route = `http://localhost:5000/recipe/delete`
+        const route = `${url}/recipe/delete`
         axios.put(route, body)
             .then(response => {
                 dispatch({ type: DELETE_RECIPE, payload: { type: body[1], index: body[3] } })

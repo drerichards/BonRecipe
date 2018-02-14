@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Elsie:100,400,500,900');
+@import url('https://fonts.googleapis.com/css?family=Elsie:100,400');
 .Header {
-    background-color: #EE6C4D;
     position: relative;
     color: #fff;
 }
@@ -9,7 +8,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1% 2%;
+    height: 10em;
+    position: relative;
+    padding: 4% 2%;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.95), rgba(255, 255, 255, 0));
 }
 
 .Header .nav>div {
@@ -17,7 +19,7 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    flex-basis: 35%;
+    flex-basis: 25%;
 }
 
 .Header .nav>div a {
@@ -30,6 +32,7 @@
     font-size: 2.5em;
     margin: 0;
     font-family: "Elsie", 'Times New Roman', Times, serif;
+    text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.95);
 }
 
 .Header h1 i {
@@ -37,11 +40,6 @@
     display: none;
 }
 
-.Header nav {
-    background-color: #EE6C4D;
-    position: relative;
-    display: inline;
-}
 
 .Header nav .col {
     display: flex;
@@ -62,19 +60,19 @@
 }
 
 .Header .acctBtn {
-    background-color: rgb(77, 179, 51);
+    background-color: rgb(66, 132, 49);
 }
 
 .Header .acctBtn:hover {
-    background-color: rgb(90, 207, 61);
+    background-color: rgb(50, 99, 37);
 }
 
 .Header .logoutBtn {
-    background-color: rgb(41, 149, 192);
+    background-color: rgb(48, 123, 153);
 }
 
 .Header .logoutBtn:hover {
-    background-color: rgb(48, 166, 212);
+    background-color: rgb(36, 93, 116);
 }
 
 .Header button i {
@@ -106,9 +104,10 @@
     display: inline-block;
     font-size: 0.9em;
     text-overflow: ellipsis;
-    overflow: el;
-    max-width: 175px;
+    min-width: 145px;
+    text-align: center;
     white-space: nowrap;
+    padding: 0.5% 0;
     overflow: hidden;
 }
 
@@ -117,22 +116,15 @@
         flex-direction: row;
         flex-basis: 25%;
     }
-
 }
-
-/* @media (min-height: 0px) and (max-height: 740px) {
-    .Header .nav>div {
-        flex-direction: column;
-    }
-} */
 
 @media (min-width: 750px) {
     .Header h1 {
-        font-size: 3.5em;
+        font-size: 5.5em;
     }
-            .Header h1 i {
-                display: initial;
-            }
+    .Header h1 i {
+        display: initial;
+    }
     .Header .nav>div {
         flex-direction: row;
     }

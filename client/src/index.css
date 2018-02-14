@@ -65,11 +65,14 @@ ul li {
 }
 
 .btn {
-  padding: 0 1.75rem;
+  padding: 0 1.5rem;
+  background-color: #398a82;
 }
 
-@media  (min-width: 720px) {
-  .btn {
-    padding: 0 2rem;
-  }
+.btn i {
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #357770;
 }
