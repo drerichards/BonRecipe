@@ -13,9 +13,9 @@
 <h2 id="links">Links</h2>
 <p>Live site: <a href="https://bonrecipe.netlify.com/">https://bonrecipe.netlify.com/</a></p>
 <h2 id="screenshots">Screenshots</h2>
-<p><strong>Home Page</strong></p>
+<p><strong>Recipes Page</strong></p>
 <p><img src="https://res.cloudinary.com/andrerichards/image/upload/v1518611483/portfolio/bon1.jpg" alt="Home View"></p>
-<p><strong>Stores Page</strong><br>
+<p><strong>Account Page</strong><br>
 <img src="https://res.cloudinary.com/andrerichards/image/upload/v1518611483/portfolio/bon2.jpg" alt="Edit Recipe View"></p>
 <h2 id="api-documentation">API Documentation</h2>
 <h4 id="yummly-recipe-api">Yummly Recipe API</h4>
