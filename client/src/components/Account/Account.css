@@ -43,7 +43,6 @@
     letter-spacing: 1px;
     transition: all 0.35s;
     padding: 0.5rem 1rem;
-    text-shadow: 1px 1px 1px #7a7a7a;
 }
 
 .Account .sysCollapse .collapsible-header:hover,
@@ -165,7 +164,7 @@ div.collapsible-body>div>div>div {
     background: rgba(216, 207, 109, 0.25);
     width: 100%;
     padding: 2% 5%;
-    margin: 0;
+    margin: 0 0 2em;
     text-transform: initial;
 }
 
@@ -188,12 +187,12 @@ div.collapsible-body>div>div>div {
 .Account .addRecipeForm input[type="text"] {
     width: 45%;
     padding: 0 1%;
-    margin-right: 1%;
+    margin: 1% 1.5%;
 }
 
 .Account .addRecipeForm div p {
     margin: 1% 1% 0 0;
-    display: inline-block;
+    display: block;
 }
 
 .Account .addRecipeForm i {
@@ -213,7 +212,7 @@ div.collapsible-body>div>div>div {
 
 .Account .addRecipeForm .recipeBtn {
     width: 15rem;
-    margin: 0 auto;
+    margin: 2% auto;
 }
 
 .Account .addRecipeForm #errorBar,
@@ -223,6 +222,10 @@ div.collapsible-body>div>div>div {
     color: #fff;
     background-color: rgb(255, 0, 0);
     display: none;
+}
+
+.modal .modal-content {
+    padding: 24px 24px 12px;
 }
 
 .modal-content h4 {
@@ -258,6 +261,10 @@ div.collapsible-body>div>div>div {
 .modal-content>div>.editIngredSpan .modalIngredient {
     margin: 1% 2%;
     width: 45%;
+}
+
+.modal-footer {
+    padding: 4px 24px;
 }
 
 .modal-footer button {
@@ -316,9 +323,6 @@ div.collapsible-body>div>div>div {
     }
     .Account .collapsible-body {
         padding: 0.5em 0.25em 0.5em 2em;
-    }
-    .Account .addRecipeForm input[type="text"] {
-        width: 35%;
     }
     .Account .ingredSection aside .ingredients {
         flex: 1 0 40%;

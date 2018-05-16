@@ -104,7 +104,7 @@ export const addSysRecipe = (dispatch, username, recipe) => {
         const route = `${url}/sys_recipes/add/${username}`
         axios.post(route, recipe)
             .then(response => {
-                const sysRecipe = { id: recipe[0], name: recipe[1], ingredients: recipe[2], image: recipe[3], cookTime: recipe[4] }
+                const sysRecipe = { id: recipe[0], name: recipe[1], ingredients: recipe[2], image: recipe[3], cookTime: recipe[4] }                
                 dispatch({ type: ADD_SYS_RECIPE, payload: sysRecipe })
             })
             .catch(error => {
@@ -119,12 +119,12 @@ export const addUserRecipe = (dispatch, username, recipe) => {
     try {
         const route = `${url}/user_recipes/add/${username}`
         axios.post(route, recipe)
-            .then(response => {
-                dispatch({ type: ADD_USER_RECIPE, payload: recipe })
-            })
-            .catch(error => {
-                return error
-            })
+        .then(response => {
+            dispatch({ type: ADD_USER_RECIPE, payload: recipe})            
+        })
+        .catch(error => {
+            return error
+        })
     } catch (error) {
         return error
     }
@@ -132,10 +132,10 @@ export const addUserRecipe = (dispatch, username, recipe) => {
 
 export const editUserRecipe = (dispatch, username, recipe) => {
     try {
-        const route = `${url}/user_recipes/edit/${username}`
-        axios.post(route, recipe)
-            .then(response => {
-                const editRecipe = { id: recipe[0][1], name: recipe[0][0], ingredients: recipe[1] }
+            const route = `${url}/user_recipes/edit/${username}`
+            axios.post(route, recipe)
+                .then(response => {
+            const editRecipe = {id: recipe[0][1], name: recipe[0][0], ingredients: recipe[1]}
                 dispatch({ type: EDIT_USER_RECIPE, payload: [editRecipe, recipe[0][2]] })
             })
             .catch(error => {
